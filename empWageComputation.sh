@@ -1,33 +1,31 @@
-sFullTime=1
-isPartTime=2
-isAbsent=0
-isPresent=1
-fullTimeHr=16
-partTimeHr=8
+isFullTime=1
+isParTime=2
 salaryPerHr=20
-salary=0
-totalSalary=0
-
-randomCheck=$(($RANDOM%3))
-
-
-
-if [ $isPresent -eq $randomCheck ]
+PartTimeHr=4
+FulldayHr=8
+random=$(($RANDOM%3))
+if [ $random -eq $isFullTime ]
 then
-echo "Employe Present"
+    Daily_Employee_Wage=$(( $salaryPerHr * $FulldayHr ))
+    echo "Daily wage of Fulltime Employee is:" $Daily_Employee_Wage
+elif [ $random -eq $isParTime ]
+then
+    Daily_Employee_Wage=$(( $salaryPerHr * $PartTimeHr ))
+    echo "Daily wage of Parttime Employee is:" $Daily_Employee_Wage
 else
-echo "Employee Absent"
+    echo "Employee is Absent"
 fi
 
-if [ $randomCheck -eq $isFullTime ]
-then
-        salary=$(($fullTimeHr*$salaryPerHr))
-elif [ $randomCheck -eq $isPartTime ]
-then
-        salary=$(($partTimeHr*$salaryPerHr))
-else
-        salary=0
-fi
-
-echo $salary
-#echo  $randomCheck
+case $random in
+     $isFullTime)
+          emp_hrs=8
+          ;;
+     $isPartTime)
+          emp_hrs=4
+          ;;
+     *)
+          emp_hrs=0
+          ;;
+esac
+Daily_Employee_Wage=$(($emp_hrs*$salaryPerHr ))
+echo "Daily wage of Employee is:" $Daily_Employee_Wage
