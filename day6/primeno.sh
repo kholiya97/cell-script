@@ -15,3 +15,4 @@ echo "$number is Prime Number"
 else
 echo "$number is Not Prime Number"
 fi
+fi
